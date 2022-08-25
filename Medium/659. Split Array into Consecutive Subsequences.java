@@ -16,7 +16,7 @@ class Solution {
         
         while(!b.isEmpty()){
             int min = b.peek(); 
-            System.out.print("min = "+min);
+           // System.out.print("min = "+min);
             int count=0;
             while(true){
                 if(!a.containsKey(min)){
