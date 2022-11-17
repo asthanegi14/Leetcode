@@ -1,13 +1,5 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+//With extra space 
+
 class Solution {
     public boolean isPalindrome(ListNode head) {
         ArrayList<Integer> a = new ArrayList<>();
@@ -22,6 +14,64 @@ class Solution {
             else{
                 i++;j--;
             }
+        }
+        return true;
+    }
+}
+
+
+
+
+//Without extra space
+
+class Solution {
+    public ListNode findMiddle(ListNode head){
+        if(head==null){
+            return head;
+        }
+        ListNode a = head;
+        ListNode b = head;
+
+        while(b.next!=null && b.next.next!=null){
+            a = a.next;
+            b = b.next.next;
+
+        }
+        return a;
+    }
+    public ListNode reverse(ListNode head){
+        if(head==null){
+            return head;
+        }
+        ListNode pre = null;
+        ListNode a = head;
+        ListNode b = head.next;
+
+        while(a!=null){
+            a.next = pre;
+            pre = a;
+            a = b;
+
+            if(b!=null){
+                b=b.next;
+            }
+        }
+        return pre;
+    }
+    public boolean isPalindrome(ListNode head) {
+        if(head==null){
+            return true;
+        }
+        ListNode mid = findMiddle(head);
+        ListNode last = reverse(mid.next);
+        ListNode curr = head;
+
+        while(last!=null){
+            if(curr.val != last.val){
+                return false;
+            }
+            curr = curr.next;
+            last = last.next;
         }
         return true;
     }
