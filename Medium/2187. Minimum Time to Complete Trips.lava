@@ -1,0 +1,25 @@
+class Solution {
+    public boolean canComplete(int[] time, int totalTrips, long max){
+        long ttl=0;
+        for(long i: time){
+            ttl += (max/i); 
+        }
+        return ttl>=totalTrips;
+    }
+    public long minimumTime(int[] time, int totalTrips) {
+        Arrays.sort(time);
+        long min=time[0], max=(long)time[time.length-1]*(long)totalTrips, ans=0;
+
+        while(min<=max){
+            long mid = min+(max-min)/2;
+            if(canComplete(time, totalTrips, mid)){
+                ans = mid;
+                max = mid-1;
+            }
+            else{
+                min = mid+1;
+            }
+        }
+        return ans;
+    }
+}
