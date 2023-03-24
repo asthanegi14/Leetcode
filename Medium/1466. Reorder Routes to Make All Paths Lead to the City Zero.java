@@ -29,11 +29,7 @@ class Solution {
         }
 
         boolean[] vis = new boolean[n];
-        for(int i=0;i<n;i++){
-            if(!vis[i]){
-                dfs(i,vis);
-            }
-        }
+        dfs(0,vis);
 
         return count;
     }
