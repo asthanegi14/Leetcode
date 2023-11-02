@@ -1,0 +1,26 @@
+class Solution {
+    int minDist(int a[], int n, int x, int y) {
+        // code here
+        int f=-1, l=-1, ans=Integer.MAX_VALUE;
+        
+        for(int i=0;i<n;i++){
+            if(a[i]==x){
+                if(l!=-1){
+                    ans = Math.min(ans, i-l);
+                }
+                f = i;
+            }
+            else if(a[i]==y){
+                if(f!=-1){
+                    ans = Math.min(ans, i-f);
+                }
+                l = i;
+            }
+        }
+        
+        if(f==-1 || l==-1){
+            return -1;
+        }
+        return ans;
+    }
+}
