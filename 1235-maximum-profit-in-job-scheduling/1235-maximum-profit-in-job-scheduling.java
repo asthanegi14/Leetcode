@@ -15,27 +15,22 @@ class Solution {
     }
     
     public int find(int a, int[][] dp){
-        for(int i=a+1;i<dp.length;i++){
-            if(dp[i][0]>=dp[a][1]){
-                return i;
+        int i = a+1, j = dp.length-1;
+        
+        while(i<=j){
+            int mid = i+(j-i)/2;
+            if(dp[mid][0] >= dp[a][1]){
+                if(dp[mid-1][0]>= dp[a][1]){
+                    j = mid-1;
+                }
+                else{
+                    return mid;
+                }
+            }
+            else{
+                i = mid+1;
             }
         }
-//         int i = a+1, j = dp.length-1;
-        
-//         while(i<=j){
-//             int mid = i+(j-i)/2;
-//             if(dp[mid][0] >= dp[a][1]){
-//                 if(dp[mid-1][0]>= dp[a][1]){
-//                     j = mid-1;
-//                 }
-//                 else{
-//                     return mid;
-//                 }
-//             }
-//             else{
-//                 i = mid+1;
-//             }
-//         }
         
         return dp.length;
     }
