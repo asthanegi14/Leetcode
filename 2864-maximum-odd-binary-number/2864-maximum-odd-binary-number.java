@@ -14,7 +14,7 @@ class Solution {
         
         // System.out.println("o="+o+" z="+z);
         
-        Queue<Character> q = new LinkedList<>();
+        Stack<Character> q = new Stack<>();
         q.add('1');
         o--;
         
@@ -25,12 +25,14 @@ class Solution {
             q.add('1');
         }
         // System.out.println("q = "+q);
-        StringBuffer ans = new StringBuffer();
+        // StringBuffer ans = new StringBuffer();
+        String ans = "";
         
         while(!q.isEmpty()){
-            ans.insert(0, q.poll());
+            // ans.insert(0, q.poll());
+            ans+=q.pop();
         }
         
-        return ans.toString();
+        return ans;
     }
 }
