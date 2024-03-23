@@ -11,22 +11,23 @@
 class Solution {
     public void reorderList(ListNode head) {
         Stack<ListNode> st = new Stack<>();
-        ListNode nw = head;
-        int len = 0;
-
-        while(nw!=null){
-            st.push(nw);
-            nw = nw.next;
-            len++;
-            System.out.println("peek = "+st.peek().val);
+        ListNode f = head;
+        int size=0;
+        
+        while(f!=null){
+            st.push(f);
+            f = f.next;
+            size++;
         }
-        nw = head;
-        for(int i=0;i<len/2;i++){
-            ListNode n = nw.next;
-            nw.next = st.peek();
-            st.pop().next = n;
-            nw = nw.next.next;
+        
+        f = head;
+        for(int i=0;i<size/2;i++){
+            ListNode node = f.next;
+            f.next = st.peek();
+            st.pop().next = node;
+            f = f.next.next;
         }
-        nw.next = null;
+        
+        f.next = null;
     }
 }
