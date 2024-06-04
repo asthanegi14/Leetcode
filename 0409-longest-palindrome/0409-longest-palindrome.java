@@ -1,9 +1,9 @@
 class Solution {
     public int longestPalindrome(String s) {
         Set<Character> set = new HashSet<>();
-        int ans=0, odd=0;
+        int i=0, j=s.length(), ans=0;
         
-        for(int i=0;i<s.length();i++){
+        while(i<j){
             char c = s.charAt(i);
             if(set.contains(c)){
                 set.remove(c);
@@ -11,15 +11,14 @@ class Solution {
             else{
                 set.add(c);
             }
+            i++;
         }
         
-        int size = set.size();
-        
-        if(size>0){
-            ans = s.length()-size+1;
+        if(set.size()>0){
+            ans = s.length()-set.size()+1;
         }
         else{
-            ans = s.length()-size;
+            ans = s.length()-set.size();
         }
         
         return ans;
