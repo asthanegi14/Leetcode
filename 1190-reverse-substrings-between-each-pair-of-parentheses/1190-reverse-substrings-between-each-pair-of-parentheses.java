@@ -1,25 +1,44 @@
 class Solution {
-    int i=0;
+    // int i=0;
     public String reverseParentheses(String s) {
+//         StringBuffer sb = new StringBuffer();
+        
+//         while(i<s.length()){
+//             char c = s.charAt(i);
+//             if(c=='('){
+//                 i++;
+//                 String str = reverseParentheses(s);
+//                 sb.append(str);
+//             }
+//             else if(c==')'){
+//                 i++;
+//                 return sb.reverse().toString();
+//             }
+//             else{
+//                 i++;
+//                 sb.append(c);
+//             }
+//         }
+        
+//         return sb.toString();
+        
+        Stack<Integer> st = new Stack<>();
         StringBuffer sb = new StringBuffer();
         
-        while(i<s.length()){
+        for(int i=0;i<s.length();i++){
             char c = s.charAt(i);
             if(c=='('){
-                i++;
-                String str = reverseParentheses(s);
-                sb.append(str);
+                st.add(sb.length());
             }
             else if(c==')'){
-                i++;
-                return sb.reverse().toString();
+                int idx = st.pop();
+                String sub = new StringBuffer(sb.substring(idx)).reverse().toString();
+                sb.replace(idx, sb.length(), sub);
             }
             else{
-                i++;
                 sb.append(c);
             }
         }
-        
         return sb.toString();
     }
 }
